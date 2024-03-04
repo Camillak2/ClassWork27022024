@@ -20,7 +20,7 @@ namespace ClassWork27022024
             {
                 Console.WriteLine("Введите коэффициенты при х для квадратного уравнения:");
 
-                if (!double.TryParse(Console.ReadLine(), out a) || a == 0)
+                if (!double.TryParse(Console.ReadLine(), out a))
                 {
                     Console.WriteLine("Некорректное значение для a. Введите корректное значение.");
                     continue;
@@ -58,42 +58,95 @@ namespace ClassWork27022024
                 break;
             }
             Console.WriteLine($"Определитель = {opredelitel = a * e - b * d}");
-            Console.WriteLine($"Определитель = {opredelitel_x = a * f - d * c}");
-            Console.WriteLine($"Определитель = {opredelitel_y = b * f - e * c}");
+            Console.WriteLine($"Определитель x = {opredelitel_x = c * e - f * b}");
+            Console.WriteLine($"Определитель y = {opredelitel_y = a * f - c * d}");
             x = opredelitel_x / opredelitel;
             y = opredelitel_y / opredelitel;
+
+            if (opredelitel != 0)
+            {
+                x = opredelitel_x / opredelitel;
+                y = opredelitel_y / opredelitel;
+                Console.WriteLine($"Прямые пересекаются в точке с координатами: ({x}, {y})");
+            }
+            else
+            {
+                if (opredelitel_x == 0 && opredelitel_y == 0)
+                {
+                    x = 1;
+
+                    if (b == 0)
+                    {
+                        y = 0;
+                    }
+                    else
+                    {
+                        y = (c - a) / b;
+                    }
+
+                    Console.WriteLine($"Уравнение имеет множество решений. Одно из решений, где прямые пересекаются в точке с координатами: ({x}, {y})");
+                }
+                else
+                {
+                    Console.WriteLine("Система не имеет решений");
+                }
+            }
+
             if (a != 0 && b != 0)
             {
-                Console.WriteLine("Прямая общего положения");
-                Console.WriteLine($"x2 = ");
+                Console.WriteLine("Первая прямая общего положения");             
             }
             if (a != 0 && b == 0 && c != 0)
             {
-                Console.WriteLine("Прямая, параллельная ОУ");
-                Console.WriteLine($"x1 = ");
+                Console.WriteLine("Первая прямая, параллельная ОУ");                
             }
             if (a != 0 && b == 0 && c == 0)
             {
-                Console.WriteLine("Ось ОУ");
-                Console.WriteLine($"x2 = {-b / (2 * a)} - {Math.Sqrt(Math.Abs(D)) / (2 * a)}i");
+                Console.WriteLine("Первая ось ОУ");
             }
 
             if (a == 0 && b != 0 && c != 0)
             {
-                Console.WriteLine("Прямая, параллельная ОХ");
-                Console.WriteLine($"x2 = {-b / (2 * a)} - {Math.Sqrt(Math.Abs(D)) / (2 * a)}i");
+                Console.WriteLine("Первая прямая, параллельная ОХ");
             }
 
             if (a == 0 && b != 0 && c == 0)
             {
-                Console.WriteLine("Ось ОХ");
-                Console.WriteLine($"x2 = {-b / (2 * a)} - {Math.Sqrt(Math.Abs(D)) / (2 * a)}i");
+                Console.WriteLine("Первая ось ОХ");            
             }
 
             if (a == 0 && b == 0)
             {
-                Console.WriteLine("Множество точек плоскости");
-                Console.WriteLine($"x2 = {-b / (2 * a)} - {Math.Sqrt(Math.Abs(D)) / (2 * a)}i");
+                Console.WriteLine("Первая прямая - множество точек плоскости");             
+            }
+
+
+            if (d != 0 && e != 0)
+            {
+                Console.WriteLine("Вторая прямая общего положения");
+            }
+            if (d != 0 && e == 0 && f != 0)
+            {
+                Console.WriteLine("Вторая прямая, параллельная ОУ");
+            }
+            if (d != 0 && e == 0 && f == 0)
+            {
+                Console.WriteLine("Вторая ось ОУ");
+            }
+
+            if (d == 0 && e != 0 && f != 0)
+            {
+                Console.WriteLine("Вторая прямая, параллельная ОХ");
+            }
+
+            if (d == 0 && e != 0 && f == 0)
+            {
+                Console.WriteLine("Прямая ось ОХ");
+            }
+
+            if (d == 0 && e == 0)
+            {
+                Console.WriteLine("Вторая прямая - множество точек плоскости");
             }
 
             Console.ReadKey();
